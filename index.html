@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surya Ethnic Product Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #fffaf5;
+      color: #333;
+    }
+    header {
+      background: #a52a2a;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2em;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px;
+      background: #f3e5dc;
+    }
+    nav button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      background: #a52a2a;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .gallery-item {
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .gallery-item img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f3e5dc;
+    }
+    .contact-links {
+      margin-top: 10px;
+    }
+    .contact-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #a52a2a;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Surya Ethnic International</h1>
+    <p>Product Gallery</p>
+  </header>
+
+  <nav id="category-buttons"></nav>
+
+  <section class="gallery" id="gallery"></section>
+
+  <footer>
+    <p>Contact Us</p>
+    <div class="contact-links">
+      <a href="https://wa.me/9667987619" target="_blank">WhatsApp</a>
+      <a href="mailto:suryaethnicint@gmail.com">Email Form</a>
+    </div>
+  </footer>
+
+  <script>
+    const categories = [
+      "Sherwani", "Tuxedo Suits", "Modi Jacket", "Kurta paijama", "Indo-western", "Bandgala Suit",
+      "Jodhpuri Suit", "Lehenga", "Saree", "Suit", "Unstitched Suit",
+      "Prewedding Gowns", "Kurti", "Anarkali Suit", "Sharara Suit", "Womens Indowestern"
+    ];
+
+    const products = [
+
+    // lehenga section start
+      { src: "images/shopping.webp",  category: "Lehenga" },
+            { src: "images/WOMENS24.jpg",  category: "Lehenga" },
+                  { src: "images/COUPLE ETHNIC 2.jpg",  category: "Lehenga" },
+                //   tuxedo suits section start
+      { src: "images/mens image 5.jpg", category: "Tuxedo Suits" },
+      { src: "images/converted img 8 clipon.jpg", category: "Tuxedo Suits" },
+    //   kurta paijama section start
+     { src: "images/kurta pajama outfit.jpg", category: "Kurta paijama" }, 
+      { src: "images/kurta-01.jpg", category: "Kurta paijama" }, 
+      { src: "images/kurta-02.jpg", category: "Kurta paijama" },   
+      { src: "images/kurta-03.jpg", category: "Kurta paijama" },   
+      { src: "images/kurta-04.jpg", category: "Kurta paijama" },   
+      { src: "images/kurta-05.jpg", category: "Kurta paijama" },   
+      { src: "images/kurta-06.jpg", category: "Kurta paijama" },   
+      { src: "images/kurta-07.jpg", category: "Kurta paijama" },   
+      { src: "images/kurta-08.jpg", category: "Kurta paijama" },   
+      { src: "images/kurta-09.jpg", category: "Kurta paijama" },        
+     
+    //   sherwani section start
+      { src: "images/mens img 2.jpg", category: "Sherwani" },
+    //   prewedding gowns section start
+      { src: "images/converted image 14 clipons.png", category: "Prewedding Gowns" },
+    //   indo-western section start
+      { src: "images/mens img 1.jpg", category: "Indo-western" },
+    //   bandgala section start
+      { src: "images/mens img 3.jpg", category: "Bandgala Suit" },
+       { src: "images/convertem image 14 clipon.png", category: "Bandgala Suit" },
+      { src: "images/jodhpuri-set.webp", category: "Jodhpuri Suit" },
+      { src: "images/mens image 6.jpg", category: "Modi Jacket" }
+    ];
+
+    const gallery = document.getElementById('gallery');
+    const categoryButtons = document.getElementById('category-buttons');
+
+    function showGallery(filter) {
+      gallery.innerHTML = "";
+      const filtered = filter === 'All' ? products : products.filter(p => p.category === filter);
+      filtered.forEach(product => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `<img src="./${product.src}" alt="${product.category}" />`;
+        gallery.appendChild(item);
+      });
+    }
+
+    function createButtons() {
+      const allBtn = document.createElement('button');
+      allBtn.textContent = "All";
+      allBtn.onclick = () => showGallery('All');
+      categoryButtons.appendChild(allBtn);
+
+      categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.textContent = cat;
+        btn.onclick = () => showGallery(cat);
+        categoryButtons.appendChild(btn);
+      });
+    }
+
+    createButtons();
+    showGallery('All');
+  </script>
+</body>
+</html>
